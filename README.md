@@ -2,11 +2,15 @@
 ## Install
 
 1. Backup old stuff `cd ~ && mv .vim/ .vim-back/ && mv .vimrc ~/.vim-back/ && mv .gvimrc ~/.vim-back/`
-2. `cd ~`
+2. `cd ~` (just to be sure)
 3. `git clone git@github.com:willthemoor/vimmage.git .vim`
-4. `ln -s ~/.vim/.vimrc ~/.vimrc`
-5. `ln -s ~/.vim/.gvimrc ~/.gvimrc`
-6. Install the [Vundle](https://github.com/gmarik/Vundle.vim) plugin manager. `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-6. Install the plugins. Either  `vim +PluginInstall +qall` from the cli or launch `vim` and run `:PluginInstall`
+4. Link the repo's .vimrc and .gvimrc to the location vim expects them
+  1. `ln -s ~/.vim/.vimrc ~/.vimrc` 
+  2. `ln -s ~/.vim/.gvimrc ~/.gvimrc`
+4. Install the [Vundle](https://github.com/gmarik/Vundle.vim) plugin manager. `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+5. Install the plugins. Three options:
+  1. From the command line:  `vim +PluginInstall +qall` 
+  2. Launch `vim` and run `:PluginInstall`
+  3. Launch `vim` and edit the `.vimrc` file: `:e $MYVIMRC`. With this option you can turn plugins on or off before installing by removing or commenting out the lines. When you're finished, save the .vimrc file. The first time you'll also need to run `:so $MYVIMRC`. After the first time, the `.vimrc` file is set to source itself whenever it's saved.
 
 Fonts patched specifically for Powerline/Airline (with install script) available here: https://github.com/powerline/fonts
