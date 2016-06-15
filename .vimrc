@@ -23,9 +23,9 @@ call vundle#begin()
 
 	Plugin 'gmarik/vundle'					" Let Vundle manage Vundle
 	Plugin 'tpope/vim-fugitive'
-	"Plugin 'Lokaltog/vim-powerline'
 	Plugin 'bling/vim-airline'
-	Plugin 'ervandew/supertab'				" Hit tab to complete words
+	Plugin 'vim-airline/vim-airline-themes' " Now separate from the Airline repo
+	"Plugin 'ervandew/supertab'				" Hit tab to complete words
 	Plugin 'mbbill/undotree'
 
 " }
@@ -33,14 +33,14 @@ call vundle#begin()
 
 " Editing { 
 
-	Plugin 'myusuf3/numbers.vim'			" Switch to relative number in insert mode
+	"Plugin 'myusuf3/numbers.vim'			" Switch to relative number in insert mode
 	Plugin 'tpope/vim-repeat'				" Repeat some plugin calls with .
 	Plugin 'edsono/vim-matchit'				" Match stuff like if/else with %
 	Plugin 'tpope/vim-speeddating'			" <C-A> and <C-X> for dates, ordinals...
 	Plugin 'junegunn/vim-easy-align'		" Align stuff
 	Plugin 'scrooloose/nerdcommenter'
 	Plugin 'tpope/vim-surround'				" Change surroundings likequotes  or ( to [
-	Plugin 'karuna/HTML-AutoCloseTag'
+	Plugin 'somini/vim-autoclose'
 	"Plugin 'spf13/vim-autoclose'			" For [, (, {, quotes
 	"let g:autoclose_vim_commentmode = 1	" to avoid auto close in vim comments
 
@@ -63,19 +63,19 @@ call vundle#begin()
 
 	Plugin 'scrooloose/syntastic'			" Syntax Highlighting and code checking
 	Plugin 'mattn/emmet-vim'				" zen coding 2.0 / sparkup
-	Plugin 'maksimr/vim-jsbeautify'			" requires .editorconfig file
-	Plugin 'einars/js-beautify'				" Required for vim version
+	"Plugin 'maksimr/vim-jsbeautify'			" requires .editorconfig file
+	"Plugin 'einars/js-beautify'				" Required for vim version
 	Plugin 'pangloss/vim-javascript'
 	Plugin 'elzr/vim-json'
-	Plugin 'spf13/PIV'						" PHP Action
+	"Plugin 'spf13/PIV'						" PHP Action
 	Plugin 'JulesWang/css.vim'				" Better CSS3 Syntax
 	" Alternative? https://github.com/hail2u/vim-css3-syntax
-	Plugin 'groenewege/vim-less'
+	"Plugin 'groenewege/vim-less'
 	Plugin 'willthemoor/vim-coloresque'		" Show colors as background in CSS
 	Plugin 'digitaltoad/vim-jade'
-	Plugin 'slim-template/vim-slim'
+	"Plugin 'slim-template/vim-slim'
 	" <Leader>P by default for vim preview
-	Plugin 'greyblake/vim-preview'			" Preview for Markdown files
+	"Plugin 'greyblake/vim-preview'			" Preview for Markdown files
 
 " }
 
@@ -85,7 +85,7 @@ call vundle#begin()
 	Plugin 'SirVer/ultisnips'
 	Plugin 'honza/vim-snippets'
 	" @TODO ^ Fork and update with mine
-	Plugin 'willthemoor/mcss-for-snipmate'
+	"Plugin 'willthemoor/mcss-for-snipmate'
 	" Mappings when more than one key is pressed at a time:
 	" https://github.com/kana/vim-arpeggio/blob/master/doc/arpeggio.txt
 	
@@ -160,7 +160,9 @@ filetype plugin indent on    " required
 """"""""" Stay sexy {
 	set background=dark			" dark/light
 	colorscheme solarized
-	set guifont=Menlo\ For\ Powerline:h12
+	" set guifont=Menlo\ For\ Powerline:h12
+	set guifont=Meslo\ LG\ M\ Regular\ For\ Powerline:h12
+	"set guifont=Avenir\ Book:h16
 	set linespace=2				" breathing room
 	set number
 	set title					" doc title visible in the terminal
@@ -841,9 +843,6 @@ filetype plugin indent on    " required
 
 " Powerline {
 	"
-	" @TODO REPLACE WITH bling/vim-airline?
-	" https://github.com/bling/vim-airline/wiki/FAQ
-	"
 	let g:Powerline_symbols = 'fancy'
 
 	" not specific to powerline but grouped here anyway.
@@ -857,24 +856,27 @@ filetype plugin indent on    " required
 " Airline {
 	let g:airline_powerline_fonts = 0
 	"	themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value. >
-	" let g:airline_theme=
-	if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
-	endif
+	" let g:airline_theme='base16_solarized'
+	let g:airline_theme='dark'
+
+	"if !exists('g:airline_symbols')
+		"let g:airline_symbols = {}
+	"endif
 
 	" unicode symbols
-	let g:airline_left_sep = '»'
-	let g:airline_left_sep = '▶'
-	let g:airline_right_sep = '«'
-	let g:airline_right_sep = '◀'
-	let g:airline_symbols.linenr = '␊'
-	let g:airline_symbols.linenr = '␤'
-	let g:airline_symbols.linenr = '¶'
-	let g:airline_symbols.branch = '⎇'
-	let g:airline_symbols.paste = 'ρ'
-	let g:airline_symbols.paste = 'Þ'
-	let g:airline_symbols.paste = '∥'
-	let g:airline_symbols.whitespace = 'Ξ'
+
+	 let g:airline_left_sep = '»'
+	 let g:airline_left_sep = '▶'
+	 let g:airline_right_sep = '«'
+	 let g:airline_right_sep = '◀'
+	 let g:airline_symbols.linenr = '␊'
+	 let g:airline_symbols.linenr = '␤'
+	 let g:airline_symbols.linenr = '¶'
+	 let g:airline_symbols.branch = '⎇'
+	 let g:airline_symbols.paste = 'ρ'
+	 let g:airline_symbols.paste = 'Þ'
+	 let g:airline_symbols.paste = '∥'
+	 let g:airline_symbols.whitespace = 'Ξ'
 
 	" These are the defaults
 	"let g:airline_mode_map = {
@@ -899,16 +901,6 @@ filetype plugin indent on    " required
 		" let g:airline#extensions#syntastic#enabled = 1
 " }
 
-" AutoCloseTag {
-	" Make it so AutoCloseTag works for xml and xhtml files as well
-	"		would be tidier but might have race conditions
-	"au FileType xhtml,xml ru ftplugin/html_autoclosetag.vim
-	" @TODO Fix path after vundle
-	au FileType php,html,xhtml,xml so ~/.vim/bundle/html-autoclosetag/ftplugin/html_autoclosetag.vim
-	" Make it so AutoCloseTag works for xml and xhtml files as well
-	au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-	nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-" }
 
 map <Leader>gs :Gstatus<CR>
 "map <Leader><Leader> :ZoomWin<CR>
