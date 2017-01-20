@@ -12,8 +12,13 @@ filetype off                  " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " 
+" To install one plugin quickly, add it here:
+" Plugin 'githubuser/foobar'
+" save the file and then run an update without the GH user prefix
+" :PluginUpdate foobar
 
 " set the runtime path to include Vundle and initialize
+" ~/.vim,/usr/local/share/vim/vimfiles,/usr/local/share/vim/vim74,/usr/local/share/vim/vimfiles/after,~/.vim/after,~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -35,7 +40,7 @@ call vundle#begin()
 
 	"Plugin 'myusuf3/numbers.vim'			" Switch to relative number in insert mode
 	Plugin 'tpope/vim-repeat'				" Repeat some plugin calls with .
-	Plugin 'edsono/vim-matchit'				" Match stuff like if/else with %
+	Plugin 'tmhedberg/matchit'				" Match stuff like if/else with %
 	Plugin 'tpope/vim-speeddating'			" <C-A> and <C-X> for dates, ordinals...
 	Plugin 'junegunn/vim-easy-align'		" Align stuff
 	Plugin 'scrooloose/nerdcommenter'
@@ -73,6 +78,7 @@ call vundle#begin()
 	"Plugin 'groenewege/vim-less'
 	Plugin 'willthemoor/vim-coloresque'		" Show colors as background in CSS
 	Plugin 'digitaltoad/vim-jade'
+	Plugin 'davejlong/cf-utils.vim'         " ColdFusion syntax
 	"Plugin 'slim-template/vim-slim'
 	" <Leader>P by default for vim preview
 	"Plugin 'greyblake/vim-preview'			" Preview for Markdown files
@@ -148,7 +154,7 @@ filetype plugin indent on    " required
 
 
 
-" @TODO Move all of the bundle stuff into .vimrc.bundles  
+" @TODO Move all of the bundle stuff into .vimrc.bundles?
 "
 " Use bundles config {
 " if filereadable(expand("~/.vimrc.bundles"))
@@ -439,7 +445,7 @@ filetype plugin indent on    " required
 	" }
 
 	" scroll with vigour {
-		nnoremap <C-e> 5<C-e>
+		"nnoremap <C-e> 5<C-e>  " used for emmet for now.
 		nnoremap <C-y> 5<C-y>
 		set scrolloff=3			" Minimal number of screen lines to keep above and below the cursor.
 	"}
@@ -705,9 +711,10 @@ filetype plugin indent on    " required
 
 		" Only want Emmet for htmlish files. CSS would be nice but it's breaking snippets 
 		let g:user_emmet_install_global = 0
-		autocmd FileType html,jade,haml,php  EmmetInstall
+		autocmd FileType html,jade,haml,php,cfml,cf EmmetInstall
 		" Share the tab key with vim https://github.com/mattn/emmet-vim/issues/168
-		imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+		"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+		let g:user_emmet_leader_key = '<C-e>'
 		let g:user_emmet_next_key='<C-n>'
 		let g:Nser_emmet_prev_key='<C-N>'
 
@@ -854,29 +861,29 @@ filetype plugin indent on    " required
 "}
 "
 " Airline {
-	let g:airline_powerline_fonts = 0
+	let g:airline_powerline_fonts = 1
 	"	themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value. >
 	" let g:airline_theme='base16_solarized'
 	let g:airline_theme='dark'
 
-	"if !exists('g:airline_symbols')
+	if !exists('g:airline_symbols')
 		"let g:airline_symbols = {}
-	"endif
+	endif
 
 	" unicode symbols
 
-	 let g:airline_left_sep = '»'
-	 let g:airline_left_sep = '▶'
-	 let g:airline_right_sep = '«'
-	 let g:airline_right_sep = '◀'
-	 let g:airline_symbols.linenr = '␊'
-	 let g:airline_symbols.linenr = '␤'
-	 let g:airline_symbols.linenr = '¶'
-	 let g:airline_symbols.branch = '⎇'
-	 let g:airline_symbols.paste = 'ρ'
-	 let g:airline_symbols.paste = 'Þ'
-	 let g:airline_symbols.paste = '∥'
-	 let g:airline_symbols.whitespace = 'Ξ'
+	" let g:airline_left_sep = '»'
+	" let g:airline_left_sep = '▶'
+	" let g:airline_right_sep = '«'
+	" let g:airline_right_sep = '◀'
+	" let g:airline_symbols.linenr = '␊'
+	" let g:airline_symbols.linenr = '␤'
+	" let g:airline_symbols.linenr = '¶'
+	" let g:airline_symbols.branch = '⎇'
+	" let g:airline_symbols.paste = 'ρ'
+	" let g:airline_symbols.paste = 'Þ'
+	" let g:airline_symbols.paste = '∥'
+	" let g:airline_symbols.whitespace = 'Ξ'
 
 	" These are the defaults
 	"let g:airline_mode_map = {
@@ -914,7 +921,7 @@ let g:CommandTMaxHeight = 15
     map <leader>nf :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+    let NERDTreeIgnore=['\.pyc', '\~$', '.DS_Store', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
     let NERDTreeChDirMode=0
     let NERDTreeQuitOnOpen=1
     let NERDTreeShowHidden=1
