@@ -13,8 +13,8 @@ filetype off                  " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " 
 " To install one plugin quickly, add it here:
-" Plugin 'githubuser/foobar'
-" save the file and then run an update without the GH user prefix
+" Plugin 'github_user/foobar'
+" save the file and then run an update without the github user prefix
 " :PluginUpdate foobar
 
 " set the runtime path to include Vundle and initialize
@@ -26,7 +26,9 @@ call vundle#begin()
 
 " General/Random Plugins {
 
-	Plugin 'gmarik/vundle'					" Let Vundle manage Vundle
+	" Plugin 'gmarik/vundle'					" Let Vundle manage Vundle
+	" let Vundle manage Vundle, required
+	Plugin 'VundleVim/Vundle.vim'
 	Plugin 'tpope/vim-fugitive'
 	Plugin 'bling/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes' " Now separate from the Airline repo
@@ -38,15 +40,16 @@ call vundle#begin()
 
 " Editing { 
 
-	"Plugin 'myusuf3/numbers.vim'			" Switch to relative number in insert mode
-	Plugin 'tpope/vim-repeat'				" Repeat some plugin calls with .
-	Plugin 'tmhedberg/matchit'				" Match stuff like if/else with %
-	Plugin 'tpope/vim-speeddating'			" <C-A> and <C-X> for dates, ordinals...
-	Plugin 'junegunn/vim-easy-align'		" Align stuff
+	"Plugin 'myusuf3/numbers.vim'         " Switch to relative number in insert mode
+	Plugin 'tpope/vim-repeat'               " Repeat some plugin calls with .
+	Plugin 'tmhedberg/matchit'            " Match stuff like if/else with %
+	Plugin 'tpope/vim-speeddating'          " <C-A> and <C-X> for dates, ordinals...
+	Plugin 'junegunn/vim-easy-align'        " Align stuff
 	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'tpope/vim-surround'				" Change surroundings likequotes  or ( to [
+	Plugin 'tpope/vim-surround'           " Change surroundings likequotes  or ( to [
 	Plugin 'somini/vim-autoclose'
-	"Plugin 'spf13/vim-autoclose'			" For [, (, {, quotes
+  Plugin 'wincent/terminus'             " Cursor shapes by mode
+	"Plugin 'spf13/vim-autoclose'         " For [, (, {, quotes
 	"let g:autoclose_vim_commentmode = 1	" to avoid auto close in vim comments
 
 " }
@@ -54,7 +57,8 @@ call vundle#begin()
 
 " Search/Files {
 
-	Plugin 'kien/ctrlp.vim'
+	" Plugin 'kien/ctrlp.vim'
+	Plugin 'ctrlpvim/ctrlp.vim'
 	Plugin 'tacahiroy/ctrlp-funky'
 	Plugin 'vim-scripts/sessionman.vim'
 	Plugin 'scrooloose/nerdtree'
@@ -73,12 +77,13 @@ call vundle#begin()
 	Plugin 'pangloss/vim-javascript'
 	Plugin 'elzr/vim-json'
 	"Plugin 'spf13/PIV'						" PHP Action
-	Plugin 'JulesWang/css.vim'				" Better CSS3 Syntax
-	" Alternative? https://github.com/hail2u/vim-css3-syntax
-	"Plugin 'groenewege/vim-less'
-	Plugin 'willthemoor/vim-coloresque'		" Show colors as background in CSS
+	" Plugin 'JulesWang/css.vim'				" Better CSS3 Syntax
+	Plugin 'hail2u/vim-css3-syntax'
+	Plugin 'cakebaker/scss-syntax.vim'
+	"Plugin 'willthemoor/vim-coloresque'		" Show colors as background in CSS
 	Plugin 'digitaltoad/vim-jade'
 	Plugin 'davejlong/cf-utils.vim'         " ColdFusion syntax
+	Plugin 'lumiliet/vim-twig'
 	"Plugin 'slim-template/vim-slim'
 	" <Leader>P by default for vim preview
 	"Plugin 'greyblake/vim-preview'			" Preview for Markdown files
@@ -88,8 +93,8 @@ call vundle#begin()
 
 " Snippets {
 
-	Plugin 'SirVer/ultisnips'
-	Plugin 'honza/vim-snippets'
+	"Plugin 'SirVer/ultisnips'
+	"Plugin 'honza/vim-snippets'
 	" @TODO ^ Fork and update with mine
 	"Plugin 'willthemoor/mcss-for-snipmate'
 	" Mappings when more than one key is pressed at a time:
@@ -165,7 +170,12 @@ filetype plugin indent on    " required
 
 """"""""" Stay sexy {
 	set background=dark			" dark/light
-	colorscheme solarized
+	" solarized options needed with iterm2 and certain terminal color profiles
+	" These don't help. Might need to unset eventually.
+	"let g:solarized_visibility = "high"
+	"let g:solarized_contrast = "high"
+	"colorscheme solarized  "solorized having problems in iterm2
+	colorscheme molokai
 	" set guifont=Menlo\ For\ Powerline:h12
 	set guifont=Meslo\ LG\ M\ Regular\ For\ Powerline:h12
 	"set guifont=Avenir\ Book:h16
@@ -201,10 +211,10 @@ filetype plugin indent on    " required
 
 	" Check 'FileTypes' for language specific tab/space/indent/... settings
 	set nowrap				" toggle with <f4>
-	set tabstop=4
-    set shiftwidth=4        " Use indents of 4 spaces
-	set softtabstop=4
-	set noexpandtab			" dammit
+	set tabstop=2
+    set shiftwidth=2        " Use indents of 4 spaces
+	set softtabstop=2
+	set expandtab			" dammit
     set autoindent          " Indent at the same level of the previous line
 	set encoding=utf-8
 	set tw=120				" 120 is the new 80. type 'gq' to trigger on a line
@@ -224,7 +234,7 @@ filetype plugin indent on    " required
 	" remove white space from the end of lines on save
 	augroup whitespace
 		autocmd!
-		autocmd FileType php,javascript,puppet,python,xml,yml,perl,css,less,jade autocmd BufWritePre <buffer> call StripTrailingWhitespace() 
+		autocmd FileType php,javascript,puppet,python,xml,yml,perl,scss,css,less,jade autocmd BufWritePre <buffer> call StripTrailingWhitespace() 
 	augroup END
 	
 " }
@@ -334,7 +344,7 @@ filetype plugin indent on    " required
 		au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 		
 		"au BufRead,BufNewFile *.less set filetype=less	
-		au Filetype less setlocal ts=4 sts=4 sw=4 noexpandtab
+		au Filetype less setlocal ts=4 sts=4 sw=4 expandtab
 
 		" Compile LessCSS on save
 		"autocmd BufWritePost,FileWritePost *.less :silent !lessc <afile> <afile>:p:r.css
@@ -928,6 +938,37 @@ let g:CommandTMaxHeight = 15
     let NERDTreeKeepTreeInNewTab=1
 	let NERDTreeMouseMode=2
 	
+" }
+
+" NerdCommenter {
+	"comment current line(s) line by line
+	"[count]<leader>cc
+
+	" comment current line(s) with a multi-line type of delimiter
+	"[count]<leader>cm
+
+	"toggle comment status of current line(s)
+	"[count]<leader>ci
+
+	"Comment block format
+	"[count]<leader>cs
+
+	"Switch between comment types
+	"<leader>ca
+
+
+	" Add spaces after comment delimiters by default
+	let g:NERDSpaceDelims = 1
+
+	" Use compact syntax for prettified multi-line comments
+	let g:NERDCompactSexyComs = 1
+	" Allow commenting and inverting empty lines (useful when commenting a region)
+	"let g:NERDCommentEmptyLines = 1
+	" Enable trimming of trailing whitespace when uncommenting
+	let g:NERDTrimTrailingWhitespace = 1
+
+
+
 " }
 
 " Session List {
