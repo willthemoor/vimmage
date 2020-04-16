@@ -2,16 +2,16 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 
-" This config is using Vundle: 
+" This config is using Vundle:
 " https://github.com/gmarik/Vundle.vim
 
 " Brief Vundle help
 " :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update 
+" :PluginInstall    - installs plugins; append `!` to update
 " :PluginUpdate		- update all plugins
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" 
+"
 " To install one plugin quickly, add it here:
 " Plugin 'github_user/foobar'
 " save the file and then run an update without the github user prefix
@@ -38,7 +38,7 @@ call vundle#begin()
 " }
 
 
-" Editing { 
+" Editing {
 
 	"Plugin 'myusuf3/numbers.vim'         " Switch to relative number in insert mode
 	Plugin 'tpope/vim-repeat'               " Repeat some plugin calls with .
@@ -99,7 +99,7 @@ call vundle#begin()
 	"Plugin 'willthemoor/mcss-for-snipmate'
 	" Mappings when more than one key is pressed at a time:
 	" https://github.com/kana/vim-arpeggio/blob/master/doc/arpeggio.txt
-	
+
 
 " }
 
@@ -115,10 +115,10 @@ call vundle#begin()
 
 " Maybe interesting....
 " https://github.com/spf13/spf13-vim/
-" https://github.com/tony/vim-config 
+" https://github.com/tony/vim-config
 " https://github.com/sgur/ctrlp-extensions.vim (command line, menus and yankring)
 " https://github.com/fisadev/vim-ctrlp-cmdpalette (vim commands via ctrl-p)
-" https://github.com/mattn/ctrlp-register 
+" https://github.com/mattn/ctrlp-register
 " https://github.com/FriedSock/ctrlpsimilar
 " https://github.com/tpope/vim-ragtag
 " https://github.com/maxbrunsfeld/vim-yankstack
@@ -153,7 +153,7 @@ filetype plugin indent on    " required
 
 	" to see where something was last set, prefix it with 'verbose'
 		" :verbose set ruler
-	
+
 	"http://learnvimscriptthehardway.stevelosh.com/
 "}
 
@@ -184,7 +184,7 @@ filetype plugin indent on    " required
 	set title					" doc title visible in the terminal
 	"set cursorcolumn			" on for jade and slim
 
-	set cursorline				" Highlight current line 
+	set cursorline				" Highlight current line
     " Get rid of it when leaving the window
 	augroup vimrc_set_cursorline
 		autocmd!
@@ -195,11 +195,11 @@ filetype plugin indent on    " required
 	augroup END
 
 	" tune the blinking of the cursor, short off, long on.
-	set guicursor=a:blinkwait200-blinkon1300-blinkoff150  
+	set guicursor=a:blinkwait200-blinkon1300-blinkoff150
 	set guicursor+=i-ci:ver25-Cursor
 
 	" switch from light to dark background
-	map <Leader>x :call ToggleBG()<CR> 
+	map <Leader>x :call ToggleBG()<CR>
 
 
 " }
@@ -234,9 +234,9 @@ filetype plugin indent on    " required
 	" remove white space from the end of lines on save
 	augroup whitespace
 		autocmd!
-		autocmd FileType php,javascript,puppet,python,xml,yml,perl,scss,css,less,jade autocmd BufWritePre <buffer> call StripTrailingWhitespace() 
+		autocmd FileType php,javascript,puppet,python,xml,yml,perl,scss,css,less,jade autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 	augroup END
-	
+
 " }
 
 
@@ -248,10 +248,10 @@ filetype plugin indent on    " required
 	set ignorecase
 	set smartcase
 	set hlsearch			" highlight the search term in the file
-	set showmatch			" highlight matching brackets 
-	" Space or ,/ removes highlighted search terms 
+	set showmatch			" highlight matching brackets
+	" Space or ,/ removes highlighted search terms
 	nmap <SPACE> :noh<CR>
-	
+
 	" Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
@@ -280,7 +280,7 @@ filetype plugin indent on    " required
 	set ttimeoutlen=50  			" Air/Powerline appreciate this
 	set history=1000				" let's remember
 	"set spell						" spell checking on. ,sp to toggle it in real time.
-	
+
 	set hidden						" allow buffer switching without saving
 	set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
 
@@ -289,8 +289,8 @@ filetype plugin indent on    " required
 
 	set gdefault					" substitutions are greedy by default. with this set, /g turns it off.
 
-	set selectmode=mouse			" selected text starts in select mode ala Word--type to overwrite. 
-									" CTRL-G toggles Visual/Select modes. 
+	set selectmode=mouse			" selected text starts in select mode ala Word--type to overwrite.
+									" CTRL-G toggles Visual/Select modes.
 
 	if has("gui_macvim")
 		" MacVIM shift+arrow-keys to select (required in .vimrc)
@@ -303,14 +303,14 @@ filetype plugin indent on    " required
 
 	set splitbelow					" New window goes below
 	set splitright					" New windows goes right
-	
+
 	set exrc						" Allow project level .vimrc files
 	set secure						" make sure there's no funny business in folder level .vimrc files
 
 
 	" Make jj a shortcut for ESC
 	inoremap jj <ESC>
-	
+
 " }
 
 
@@ -342,13 +342,13 @@ filetype plugin indent on    " required
 
 		" Help Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 		au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
-		
-		"au BufRead,BufNewFile *.less set filetype=less	
+
+		"au BufRead,BufNewFile *.less set filetype=less
 		au Filetype less setlocal ts=4 sts=4 sw=4 expandtab
 
 		" Compile LessCSS on save
 		"autocmd BufWritePost,FileWritePost *.less :silent !lessc <afile> <afile>:p:r.css
-		
+
 		" Slim/Jade are delicate
 		" :set list to show tabs
 		" :retab! to replace tabs with spaces or spaces with tabs
@@ -372,7 +372,7 @@ filetype plugin indent on    " required
 	" basic mappings {
 		let mapleader = ","
 
-		" Making it so ; works like : for commands. 
+		" Making it so ; works like : for commands.
 		" use ;; for next f/t F/T find
 		nnoremap ; :
 		nnoremap ;; ;
@@ -391,7 +391,7 @@ filetype plugin indent on    " required
 		map <C-k> <C-W>k
 		map <C-h> <C-W>h
 		map <C-l> <C-W>l
-			
+
 		" Cycle through windows. Command-Option-ArrowKey does the same via .gvimrc
 		map <C-S-TAB> <C-W><C-W>
 
@@ -407,7 +407,7 @@ filetype plugin indent on    " required
 		map <M-TAB> :b#<CR>
 		cmap bdd :b#<CR> :bd#<CR>
 
-		" <M-X> not working here. use the actual character sent by OSX. 
+		" <M-X> not working here. use the actual character sent by OSX.
 		"nmap <M-b> <C-O>
 		nmap ∫ <C-O>
 		nmap ı <C-I>
@@ -464,7 +464,7 @@ filetype plugin indent on    " required
 		set foldmethod=indent   " fold based on indent
 		set foldnestmax=4       " deepest fold is 4 levels
 		set nofoldenable        " dont fold by default. zi to toggle.
-		set foldlevel=2         
+		set foldlevel=2
 
 		" Code folding options
 		" ,f to trigger manual folding
@@ -484,13 +484,13 @@ filetype plugin indent on    " required
 	" Textmate style line manipulation {
 
 		" Move line up/down with ctrl+up/down arrow. Normal and multi-line visual mode
-		nmap <C-Up> ddkP 
+		nmap <C-Up> ddkP
 		nmap <C-Down> ddp
 		vmap <C-Up> xkP`[V`]
 		vmap <C-Down> xp`[V`]
 		inoremap <C-Up> <Esc>:m .+1<CR>==gi
 		inoremap <C-Up> <Esc>:m .-2<CR>==gi
-		" duplicate line 
+		" duplicate line
 		map <C-D> yyp
 
 		" New Line Goodness
@@ -501,7 +501,7 @@ filetype plugin indent on    " required
 
 		" Yank from the cursor to the end of the line, to be consistent with C and D.
 		nnoremap Y y$
-		
+
 		" Wrapped lines goes down/up to next row, rather than next line in file.
 		"noremap j gj
 		"noremap k gk
@@ -541,7 +541,7 @@ filetype plugin indent on    " required
 			set undofile
 		catch
 		endtry
-	
+
 	augroup END
 "}
 
@@ -581,7 +581,7 @@ filetype plugin indent on    " required
         call cursor(l, c)
     endfunction
     " }
-	
+
 	" toggle line numbers from absolute to relative with f2.
 	" 11/14: handled via Vim-Numbers plugin now
 	"map <silent> <F7> :if &number <Bar>
@@ -599,7 +599,7 @@ filetype plugin indent on    " required
 	 augroup END
 	endif
 
-	" diffs are handy	
+	" diffs are handy
 	nnoremap <silent> <Leader>df :call DiffToggle()<CR>
 	function! DiffToggle()
 		if &diff
@@ -615,7 +615,7 @@ filetype plugin indent on    " required
 	"inoremap {<CR> {<CR>}<Esc>O
 	"inoremap (<CR> (<CR>)<Esc>O
 	"inoremap [<CR> [<CR>]<Esc>O
-	
+
 
 	" toggle function folds with f2
 	"vmap <Leader>f :call
@@ -624,15 +624,15 @@ filetype plugin indent on    " required
 	"map <F2>  :call FoldToggler()<CR>
 	" function! FoldToggler()
 	"     :let xxx=line(".")
-	"     :let c=getline(".")[col(".") - 1]	
+	"     :let c=getline(".")[col(".") - 1]
 	"     echo c
 	"     if foldclosed(xxx) == -1
 	"         normal zf%<CR>
 	"     else
 	"         if c != "{" || c != "}"
 	"             "presume we're on a function name somewhere
-	"             normal f{ 
-	"         endif	
+	"             normal f{
+	"         endif
 	"         normal zo%<cr>
 
 	"     endif
@@ -664,7 +664,7 @@ filetype plugin indent on    " required
 		let g:html_indent_inctags = "html,body,head,tbody"
 		let g:html_indent_script1 = "inc"
 		let g:html_indent_style1 = "inc"
-	"} 
+	"}
 
 
 	" easy-align {
@@ -676,7 +676,7 @@ filetype plugin indent on    " required
 
 	"}
 	"
-	
+
     " Numbers {
 		" Switch between relative and absolute numbers
 		nnoremap <F7> :NumbersToggle<CR>
@@ -696,7 +696,7 @@ filetype plugin indent on    " required
             let g:undotree_SetFocusWhenToggle=1
         endif
     " }
-	
+
 	" UltiSnips {
 		let g:UltiSnipsEditSplit = "vertical"
 		" Location of private snippets
@@ -719,7 +719,7 @@ filetype plugin indent on    " required
 		" / : toggle a comment an html block
 		" a : make an anchor from a url
 
-		" Only want Emmet for htmlish files. CSS would be nice but it's breaking snippets 
+		" Only want Emmet for htmlish files. CSS would be nice but it's breaking snippets
 		let g:user_emmet_install_global = 0
 		autocmd FileType html,jade,haml,php,cfml,cf EmmetInstall
 		" Share the tab key with vim https://github.com/mattn/emmet-vim/issues/168
@@ -794,12 +794,12 @@ filetype plugin indent on    " required
 		highlight SyntasticWarningSign gui=bold guifg=yellow
 	" }
 
-	
+
 	" Snipmate {
 		"let g:snips_author = "Will Moore"
 		" to reset the snipmate trigger (defaults to tab)
 		" let g:snips_trigger_key='<c-space>'
-		"if ( !exists('g:snipMate') ) 
+		"if ( !exists('g:snipMate') )
 			"let g:snipMate = {}
 			"let g:snipMate.scope_aliases = {}
 		"endif
@@ -822,7 +822,7 @@ filetype plugin indent on    " required
 		" https://github.com/kshenoy/dotvim/blob/master/bundle.vim#L158-L204
 		let g:ctrlp_working_path_mode = 'ra'	" start in the nearest ancestor that 1 of contains: .git .hg .svn .bzr _darcs
 		let g:ctrlp_mruf_relative = 1 "Show only MRU files in the working directory.
-		
+
 		nnoremap <silent> <D-t> :CtrlP<CR>
 		nnoremap <silent> <D-r> :CtrlPMRU<CR>
 		let g:ctrlp_custom_ignore = {
@@ -865,9 +865,9 @@ filetype plugin indent on    " required
 	" not specific to powerline but grouped here anyway.
 	set showcmd							" Show (partial) command in the status line
 	set laststatus=2					" Always show the statusline
-	
+
 	"let g:Powerline_cache_enabled = 0 "uncomment to hack
-	
+
 "}
 "
 " Airline {
@@ -910,10 +910,10 @@ filetype plugin indent on    " required
 		"\ '' : 'S',
 		"\ }
 		"
-	" defines whether the preview window should be excluded from have its window statusline 
+	" defines whether the preview window should be excluded from have its window statusline
 		" modified (may help with plugins which use the preview window heavily) >
 		" let g:airline_exclude_preview = 0
-		
+
 		" enable/disable syntastic integration >
 		" let g:airline#extensions#syntastic#enabled = 1
 " }
@@ -937,7 +937,7 @@ let g:CommandTMaxHeight = 15
     let NERDTreeShowHidden=1
     let NERDTreeKeepTreeInNewTab=1
 	let NERDTreeMouseMode=2
-	
+
 " }
 
 " NerdCommenter {
