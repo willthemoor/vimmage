@@ -1,5 +1,5 @@
 # Vimmage
-My vim setup. You probably don't want to use this. It's a mess and there are real distros out there chock full of thoughtfulness.
+My vim setup. ~You probably don't want to use this~. Do not use this! It is ancient. It's a mess and there are real distros out there chock full of thoughtfulness.
 
 ## Install
 
